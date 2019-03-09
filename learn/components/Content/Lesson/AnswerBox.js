@@ -168,7 +168,7 @@ class AnswerBox extends React.Component {
             answer={answer}
             symbol={getSymbol(answer)}
             selected={answer === step.givenAnswer}
-            readOnly={readOnly || loading}
+            readOnly
           />
         ))}
       </Area>
