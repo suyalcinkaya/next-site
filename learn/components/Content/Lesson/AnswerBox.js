@@ -114,7 +114,7 @@ class AnswerBox extends React.Component {
   }
 
   renderPrompt () {
-    const { step } = this.props
+    const { step, loading } = this.props
 
     return (
       <Area>
@@ -130,6 +130,7 @@ class AnswerBox extends React.Component {
             onClick={() => this.handleSubmit()} 
             color='#252525'
             shadowColor='rgba(0, 0, 0, 0.2)'
+            disabled={loading}
             invert
           >
             Submit
@@ -145,7 +146,7 @@ class AnswerBox extends React.Component {
   }
 
   renderStatus () {
-    const { step } = this.props
+    const { step, loading } = this.props
     const isCorrect = step.givenAnswer === step.correctAnswer
 
     const getSymbol = (answer) => {
@@ -160,13 +161,14 @@ class AnswerBox extends React.Component {
 
     return (
       <Area>
+        {loading ? <p>Loading...</p> : null}
         {step.answers.map((answer) => (
           <Answer
             key={answer}
             answer={answer}
             symbol={getSymbol(answer)}
             selected={answer === step.givenAnswer}
-            readOnly
+            readOnly={readOnly || loading}
           />
         ))}
       </Area>
@@ -174,11 +176,10 @@ class AnswerBox extends React.Component {
   }
 
   render () {
-    const { step, loading, error } = this.props
+    const { step, error } = this.props
 
     if (error) return (<ErrorBox error={error}/>)
 
-    if (loading) return (<p>Loading...</p>)
     if (!step.givenAnswer) return this.renderPrompt()
     return this.renderStatus()
   }
