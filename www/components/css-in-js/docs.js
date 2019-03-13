@@ -10,7 +10,7 @@ export default () => (
       <div className="content">
         <p>
           Developing with <code>styled-jsx</code> is easier than ever with syntax highlighting for major editors like
-          VSCode, WebStorm and VSCode. With a simple plugin system, it's easy to use your favorite preprocessors such as
+          WebStorm and VSCode. With a simple plugin system, it's easy to use your favorite preprocessors such as
           Sass, PostCSS, and Stylus.
         </p>
       </div>
